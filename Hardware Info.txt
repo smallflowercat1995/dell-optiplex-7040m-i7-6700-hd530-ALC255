@@ -1,0 +1,78 @@
+CPU Model						Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
+CPU Code						Skylake
+GPU Model						Intel HD Graphics 530	显示适配器
+Chipset Model					Intel(R) 100 Series/C230 Series Chipset Family LPC Controller (Q170) - A146
+Keyboard						Null or USB
+Trackpad						Null or USB
+Touchscreen Connection Type		Null or USB
+Audio Codec						Realtek ALC255 @ Intel Sunrise Point PCH - High Definition Audio Controller [D1]	PCI
+								layout-id 96
+Network Controller models		Broadcom BCM43224AG 802.11a/b/g/draft-n Wireless Network Adapter	PCI
+								Intel Ethernet Connection (2) I219-LM	PCI
+Drive Model						SanDisk SSD PLUS 1000GB
+								Intel(R) 100 Series/C230 Chipset Family SATA AHCI Controller
+
+仅限戴尔 7040m 解锁使用
+其他型号和品牌电脑，请按照以上步骤测试
+将预分配的 DVMT 0x350 设置为 2048M： setup_var 0x350 0x40
+将预分配的 DVMT 0x351 设置为 MAX： setup_var 0x351 0x3
+禁用 CFG 锁定： setup_var 0xAF 0x00
+
+Misc
+	Boot
+		# 关闭隐藏辅助条目
+		HideAuxiliary Boolean False
+	Security
+		# 模拟nvram
+		ExposeSensitiveData Number 3
+NVRAM
+	7C436110-AB2A-4BBB-A880-FE41995C9F82
+		# 关闭SIP
+			csr-active-config data 67000000
+		# 中文键盘映射
+			prev-lang:kbd string zh-Hans:252
+		# npci=0x2000 修正五国错误 卡在 using 16384 主板X79、X99、X299 参数修正一些pci错误
+		# -v 打印日志
+		# debug=0x100 禁用macOS的看门狗，这有助于防止内核崩溃时重新启动。这样就可以收集一些有用的信息，并遵循面包屑来克服问题。
+		# keepsyms=1 这是一个调试=0x100的配套设置，告诉操作系统也打印内核崩溃的符号。这可以就导致恐慌本身的原因提供一些更有用的见解。
+		# igfxagdc=0 双屏幕外接开机主屏幕黑屏
+		# igfxonln=1 HDMI接口外接显示器睡眠唤醒
+		# swd_panic=1 避免睡眠导致重新启动的问题，这应该会给一个内核崩溃日志
+			boot-args string -v keepsyms=1 debug=0x100 igfxagdc=0 igfxonln=1 swd_panic=1 npci=0x2000
+UEFI
+	Quirks
+		# Usb转让解决still waiting for root device
+			ReleaseUsbOwnership Boolean True
+		# 解决卡 [EB|#LOG:EXITBS:START]
+			IgnoreInvalidFlexRatio Boolean True
+
+  #######################################################
+ #                iMac17,1 SMBIOS Info                 #
+#######################################################
+
+Type:         iMac17,1
+Serial:       C02QKPZQGG7L
+Board Serial: C02542902QXGPF7UE
+SmUUID:       72C2A49D-FAEC-4EBF-AEAF-53556CCD84DB
+Apple ROM:    80E65096C3FD
+
+Derive the corresponding ROM Value
+	00:0A:95	Apple	Apple, Inc.
+		MAC: 
+			00:0A:95:00:11:22
+		ROM: 
+			000A95001122
+
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS02)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS01)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS03)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS07)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS05)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(HS04)
+
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS02)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS01)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS03)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS07)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS05)
+ACPI(_SB_)#ACPI(PCI0)#ACPI(XHC_)#ACPI(RHUB)#ACPI(SS04)
